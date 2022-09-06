@@ -1,7 +1,10 @@
 import 'package:bb_baazar/views/auth/landing_customer_screen.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp().then((value) => print("Completed"));
   runApp(const MyApp());
 }
 

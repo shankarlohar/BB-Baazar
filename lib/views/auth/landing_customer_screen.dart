@@ -1,4 +1,8 @@
+import 'package:bb_baazar/controllers/auth_controller.dart';
+import 'package:bb_baazar/controllers/snack_bar_controller.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 
 class LandingCustomerScreen extends StatefulWidget {
   @override
@@ -7,7 +11,46 @@ class LandingCustomerScreen extends StatefulWidget {
 
 class _LandingCustomerScreenState extends State<LandingCustomerScreen> {
   // const LandingCustomerScreen({Key? key}) : super(key: key);
+  final AuthController authController = AuthController();
+  final TextEditingController fullNameController = TextEditingController();
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
+
   bool passwordVisible = true;
+  bool isLoading = false;
+
+  Uint8List? image;
+
+  pickImageFromGallery() async {
+    Uint8List? im = await authController.pickImage(ImageSource.gallery);
+    setState(() {
+      image = im;
+    });
+  }
+
+  pickImageFromCamera() async {
+    Uint8List im = await authController.pickImage(ImageSource.camera);
+    setState(() {
+      image = im;
+    });
+  }
+
+  signUp() async {
+    setState(() {
+      isLoading = true;
+    });
+    String res = await authController.signUpUsers(fullNameController.text,
+        emailController.text, passwordController.text, image);
+    setState(() {
+      isLoading = false;
+    });
+
+    if (res != "Success") {
+      return snackBar(res, context);
+    } else {
+      print("You hve been navigated to the home screen!");
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -41,10 +84,16 @@ class _LandingCustomerScreenState extends State<LandingCustomerScreen> {
                 ),
                 Row(
                   children: [
-                    CircleAvatar(
-                      radius: 60,
-                      backgroundColor: Colors.cyan,
-                    ),
+                    image != null
+                        ? CircleAvatar(
+                            radius: 60,
+                            backgroundColor: Colors.cyan,
+                            backgroundImage: MemoryImage(image!),
+                          )
+                        : CircleAvatar(
+                            radius: 60,
+                            backgroundColor: Colors.cyan,
+                          ),
                     SizedBox(
                       width: 10,
                     ),
@@ -59,7 +108,9 @@ class _LandingCustomerScreenState extends State<LandingCustomerScreen> {
                             ),
                           ),
                           child: IconButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              pickImageFromCamera();
+                            },
                             icon: Icon(
                               Icons.camera_alt,
                               color: Colors.white,
@@ -78,7 +129,9 @@ class _LandingCustomerScreenState extends State<LandingCustomerScreen> {
                             ),
                           ),
                           child: IconButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              pickImageFromGallery();
+                            },
                             icon: Icon(
                               Icons.photo,
                               color: Colors.white,
@@ -95,6 +148,7 @@ class _LandingCustomerScreenState extends State<LandingCustomerScreen> {
                 Column(
                   children: [
                     TextFormField(
+                      controller: fullNameController,
                       decoration: InputDecoration(
                         labelText: "Full Name",
                         hintText: "Enter Your Full Name",
@@ -109,6 +163,7 @@ class _LandingCustomerScreenState extends State<LandingCustomerScreen> {
                       height: 10,
                     ),
                     TextFormField(
+                      controller: emailController,
                       decoration: InputDecoration(
                         labelText: "Email",
                         hintText: "Enter Your email",
@@ -123,6 +178,7 @@ class _LandingCustomerScreenState extends State<LandingCustomerScreen> {
                       height: 10,
                     ),
                     TextFormField(
+                      controller: passwordController,
                       obscureText: passwordVisible,
                       decoration: InputDecoration(
                         labelText: "Password",
@@ -151,23 +207,32 @@ class _LandingCustomerScreenState extends State<LandingCustomerScreen> {
                     SizedBox(
                       height: 15,
                     ),
-                    Container(
-                      width: MediaQuery.of(context).size.width - 40,
-                      height: 50,
-                      decoration: BoxDecoration(
-                        color: Colors.cyan,
-                        borderRadius: BorderRadius.circular(
-                          15,
-                        ),
-                      ),
-                      child: Center(
-                        child: Text(
-                          "Sign Up",
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 20,
-                            fontWeight: FontWeight.bold,
+                    GestureDetector(
+                      onTap: () {
+                        signUp();
+                      },
+                      child: Container(
+                        width: MediaQuery.of(context).size.width - 40,
+                        height: 50,
+                        decoration: BoxDecoration(
+                          color: Colors.cyan,
+                          borderRadius: BorderRadius.circular(
+                            15,
                           ),
+                        ),
+                        child: Center(
+                          child: isLoading
+                              ? CircularProgressIndicator(
+                                  color: Colors.white,
+                                )
+                              : Text(
+                                  "Sign Up",
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
                         ),
                       ),
                     ),

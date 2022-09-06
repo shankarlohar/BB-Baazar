@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "384701742098",
+    "project_id": "bb-baazar",
+    "storage_bucket": "bb-baazar.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:384701742098:android:9fa3c8c7440688d614eccb",
+        "android_client_info": {
+          "package_name": "com.shankarlohar.bb_baazar"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "384701742098-h4kkttbnksc8pt8bsoehivqb1013cua7.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBArhTq5b0nOqwTZzT1rikGzcG9JcWJNlo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "384701742098-h4kkttbnksc8pt8bsoehivqb1013cua7.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
