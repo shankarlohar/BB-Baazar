@@ -1,3 +1,4 @@
+import 'package:bb_baazar/views/cart_screen.dart';
 import 'package:bb_baazar/views/home_screen.dart';
 import 'package:bb_baazar/views/profile_screen.dart';
 import 'package:flutter/material.dart';
@@ -19,9 +20,7 @@ class _CustomerHomeScreenState extends State<CustomerHomeScreen> {
     Center(
       child: Text("Shop Screen"),
     ),
-    Center(
-      child: Text("Cart Screen"),
-    ),
+    CartScreen(),
     ProfileScreen(),
   ];
 

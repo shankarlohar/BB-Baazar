@@ -64,6 +64,9 @@ class ProfileScreen extends StatelessWidget {
           SliverToBoxAdapter(
             child: Column(
               children: [
+                SizedBox(
+                  height: 30,
+                ),
                 Container(
                   height: 80,
                   width: MediaQuery.of(context).size.width * 0.9,
