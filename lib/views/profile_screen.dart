@@ -34,6 +34,28 @@ class ProfileScreen extends StatelessWidget {
                         ],
                       ),
                     ),
+                    child: Padding(
+                      padding: const EdgeInsets.all(25.0),
+                      child: Row(
+                        children: [
+                          CircleAvatar(
+                            radius: 50,
+                            backgroundImage:
+                                AssetImage('assets/images/app_logo/image.jpg'),
+                          ),
+                          SizedBox(
+                            width: 25,
+                          ),
+                          Text(
+                            "Guest",
+                            style: TextStyle(
+                              fontSize: 25,
+                              color: Colors.white,
+                            ),
+                          )
+                        ],
+                      ),
+                    ),
                   ),
                 );
               },
@@ -142,34 +164,8 @@ class ProfileScreen extends StatelessWidget {
                 SizedBox(
                   height: 20,
                 ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    SizedBox(
-                      height: 40,
-                      width: 50,
-                      child: Divider(
-                        color: Colors.black,
-                        thickness: 1,
-                      ),
-                    ),
-                    Text(
-                      "Account Info",
-                      style: TextStyle(
-                        fontSize: 24,
-                        fontWeight: FontWeight.w700,
-                        color: Colors.black,
-                      ),
-                    ),
-                    SizedBox(
-                      height: 40,
-                      width: 50,
-                      child: Divider(
-                        color: Colors.black,
-                        thickness: 1,
-                      ),
-                    ),
-                  ],
+                RepeatedDividor(
+                  title: "Accunt Info",
                 ),
                 Padding(
                   padding: const EdgeInsets.all(10.0),
@@ -184,15 +180,10 @@ class ProfileScreen extends StatelessWidget {
                     ),
                     child: Column(
                       children: [
-                        ListTile(
-                          title: Text("Email Address"),
-                          subtitle: Text(
-                            "shankarloharmail@gmail.com",
-                          ),
-                          leading: Icon(
-                            Icons.email,
-                            color: Colors.red,
-                          ),
+                        RepeatedListTile(
+                          title: "Email Address",
+                          subtitle: "shankarloharmail@gmail.com",
+                          leading: Icons.email,
                         ),
                         Padding(
                           padding: const EdgeInsets.all(8.0),
@@ -201,15 +192,10 @@ class ProfileScreen extends StatelessWidget {
                             thickness: 1,
                           ),
                         ),
-                        ListTile(
-                          title: Text("Phone Number"),
-                          subtitle: Text(
-                            "+91 9831159686",
-                          ),
-                          leading: Icon(
-                            Icons.phone,
-                            color: Colors.red,
-                          ),
+                        RepeatedListTile(
+                          title: "Phone number",
+                          subtitle: "+91 9831159686",
+                          leading: Icons.phone,
                         ),
                         Padding(
                           padding: const EdgeInsets.all(8.0),
@@ -218,15 +204,59 @@ class ProfileScreen extends StatelessWidget {
                             thickness: 1,
                           ),
                         ),
-                        ListTile(
-                          title: Text("Address"),
-                          subtitle: Text(
-                            "Cossipore, Kolkata 700002",
+                        RepeatedListTile(
+                          title: "Address",
+                          subtitle: "Cossipore, Kolkata, 700002",
+                          leading: Icons.location_pin,
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                RepeatedDividor(
+                  title: "Account Settings",
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(10.0),
+                  child: Container(
+                    height: 300,
+                    width: double.infinity,
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(
+                        20,
+                      ),
+                    ),
+                    child: Column(
+                      children: [
+                        RepeatedListTile(
+                          title: "Edit Profile",
+                          subtitle: "",
+                          leading: Icons.edit,
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Divider(
+                            color: Colors.grey,
+                            thickness: 1,
                           ),
-                          leading: Icon(
-                            Icons.location_pin,
-                            color: Colors.red,
+                        ),
+                        RepeatedListTile(
+                          title: "Change Password",
+                          subtitle: "",
+                          leading: Icons.lock,
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Divider(
+                            color: Colors.grey,
+                            thickness: 1,
                           ),
+                        ),
+                        RepeatedListTile(
+                          title: "Logout",
+                          subtitle: "",
+                          leading: Icons.logout,
                         ),
                       ],
                     ),
@@ -237,6 +267,73 @@ class ProfileScreen extends StatelessWidget {
           ),
         ],
       ),
+    );
+  }
+}
+
+class RepeatedListTile extends StatelessWidget {
+  final String title;
+  final String subtitle;
+  final IconData leading;
+  const RepeatedListTile({
+    required this.title,
+    required this.subtitle,
+    required this.leading,
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return ListTile(
+      title: Text(title),
+      subtitle: Text(
+        subtitle,
+      ),
+      leading: Icon(
+        leading,
+        color: Colors.red,
+      ),
+    );
+  }
+}
+
+class RepeatedDividor extends StatelessWidget {
+  final String title;
+  const RepeatedDividor({
+    required this.title,
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        SizedBox(
+          height: 40,
+          width: 50,
+          child: Divider(
+            color: Colors.black,
+            thickness: 1,
+          ),
+        ),
+        Text(
+          title,
+          style: TextStyle(
+            fontSize: 24,
+            fontWeight: FontWeight.w700,
+            color: Colors.black,
+          ),
+        ),
+        SizedBox(
+          height: 40,
+          width: 50,
+          child: Divider(
+            color: Colors.black,
+            thickness: 1,
+          ),
+        ),
+      ],
     );
   }
 }
