@@ -1,4 +1,5 @@
 import 'package:bb_baazar/views/home_screen.dart';
+import 'package:bb_baazar/views/profile_screen.dart';
 import 'package:flutter/material.dart';
 
 class CustomerHomeScreen extends StatefulWidget {
@@ -21,9 +22,7 @@ class _CustomerHomeScreenState extends State<CustomerHomeScreen> {
     Center(
       child: Text("Cart Screen"),
     ),
-    Center(
-      child: Text("Profile Screen"),
-    ),
+    ProfileScreen(),
   ];
 
   @override
@@ -31,8 +30,8 @@ class _CustomerHomeScreenState extends State<CustomerHomeScreen> {
     return Scaffold(
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
-        selectedItemColor: Colors.red,
-        unselectedItemColor: Colors.black,
+        selectedItemColor: Colors.black,
+        unselectedItemColor: Colors.red,
         currentIndex: selectedItem,
         onTap: (index) {
           setState(() {
