@@ -81,7 +81,7 @@ class _LandingCustomerScreenState extends State<LandingCustomerScreen> {
                       icon: Icon(
                         Icons.person,
                         size: 35,
-                        color: Colors.cyan,
+                        color: Colors.red,
                       ),
                     )
                   ],
@@ -91,12 +91,12 @@ class _LandingCustomerScreenState extends State<LandingCustomerScreen> {
                     image != null
                         ? CircleAvatar(
                             radius: 60,
-                            backgroundColor: Colors.cyan,
+                            backgroundColor: Colors.red,
                             backgroundImage: MemoryImage(image!),
                           )
                         : CircleAvatar(
                             radius: 60,
-                            backgroundColor: Colors.cyan,
+                            backgroundColor: Colors.red,
                           ),
                     SizedBox(
                       width: 10,
@@ -105,7 +105,7 @@ class _LandingCustomerScreenState extends State<LandingCustomerScreen> {
                       children: [
                         Container(
                           decoration: BoxDecoration(
-                            color: Colors.cyan,
+                            color: Colors.red,
                             borderRadius: BorderRadius.only(
                               topLeft: Radius.circular(15),
                               topRight: Radius.circular(15),
@@ -126,7 +126,7 @@ class _LandingCustomerScreenState extends State<LandingCustomerScreen> {
                         ),
                         Container(
                           decoration: BoxDecoration(
-                            color: Colors.cyan,
+                            color: Colors.red,
                             borderRadius: BorderRadius.only(
                               bottomLeft: Radius.circular(15),
                               bottomRight: Radius.circular(15),
@@ -219,7 +219,7 @@ class _LandingCustomerScreenState extends State<LandingCustomerScreen> {
                         width: MediaQuery.of(context).size.width - 40,
                         height: 50,
                         decoration: BoxDecoration(
-                          color: Colors.cyan,
+                          color: Colors.red,
                           borderRadius: BorderRadius.circular(
                             15,
                           ),

@@ -1,5 +1,6 @@
 import 'package:bb_baazar/views/auth/customer_login_screen.dart';
 import 'package:bb_baazar/views/auth/landing_customer_screen.dart';
+import 'package:bb_baazar/views/customer_home_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
@@ -18,9 +19,9 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         title: 'BB Baazar',
         theme: ThemeData(
-          primarySwatch: Colors.blue,
+          primarySwatch: Colors.red,
           fontFamily: "Brand-Bold",
         ),
-        home: CustomerLoginScreen());
+        home: CustomerHomeScreen());
   }
 }

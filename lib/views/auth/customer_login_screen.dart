@@ -64,7 +64,7 @@ class _CustomerLoginScreenState extends State<CustomerLoginScreen> {
                       icon: Icon(
                         Icons.person,
                         size: 35,
-                        color: Colors.cyan,
+                        color: Colors.red,
                       ),
                     )
                   ],
@@ -137,7 +137,7 @@ class _CustomerLoginScreenState extends State<CustomerLoginScreen> {
                         width: MediaQuery.of(context).size.width - 40,
                         height: 50,
                         decoration: BoxDecoration(
-                          color: Colors.cyan,
+                          color: Colors.red,
                           borderRadius: BorderRadius.circular(
                             15,
                           ),
