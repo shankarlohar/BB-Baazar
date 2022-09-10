@@ -28,7 +28,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.red,
         fontFamily: "Brand-Bold",
       ),
-      initialRoute: SellerLoginScreen.routeName,
+      initialRoute: SellerHomeScreen.routeName,
       routes: {
         CustomerHomeScreen.routeName: (context) => CustomerHomeScreen(),
         LandingCustomerScreen.routeName: (context) => LandingCustomerScreen(),

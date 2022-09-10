@@ -1,3 +1,7 @@
+import 'package:bb_baazar/views/gallery/electronics_gallery_screen.dart';
+import 'package:bb_baazar/views/gallery/men_gallery_screen.dart';
+import 'package:bb_baazar/views/gallery/shoes_gallery_screen.dart';
+import 'package:bb_baazar/views/gallery/women_gallery_screen.dart';
 import 'package:bb_baazar/views/inner_screens/search_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -9,6 +13,7 @@ class HomeScreen extends StatelessWidget {
     return DefaultTabController(
       length: 4,
       child: Scaffold(
+        backgroundColor: Colors.blueGrey.shade100.withOpacity(0.5),
         appBar: AppBar(
           backgroundColor: Colors.white,
           title: InkWell(
@@ -77,7 +82,7 @@ class HomeScreen extends StatelessWidget {
                 title: "Women",
               ),
               RepeatedTab(
-                title: "Kids",
+                title: "Electronics",
               ),
               RepeatedTab(
                 title: "Shoes",
@@ -87,26 +92,10 @@ class HomeScreen extends StatelessWidget {
         ),
         body: TabBarView(
           children: [
-            Center(
-              child: Text(
-                "Men Category",
-              ),
-            ),
-            Center(
-              child: Text(
-                "Women Category",
-              ),
-            ),
-            Center(
-              child: Text(
-                "Kids Category",
-              ),
-            ),
-            Center(
-              child: Text(
-                "Shoes Category",
-              ),
-            ),
+            MenGalleryScreen(),
+            WomenGalleryScreen(),
+            ElectronicsGalleryScreen(),
+            ShoesGalleryScreen(),
           ],
         ),
       ),
