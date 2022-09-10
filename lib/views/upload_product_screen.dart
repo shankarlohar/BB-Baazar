@@ -94,11 +94,35 @@ class _UploadProductScreenState extends State<UploadProductScreen> {
     }
   }
 
+  // "Men",
+  // "Women",
+  // "Electronics",
+  // "Accessories",
+  // "Shoes",
+  // "Home & Garden",
+  // "Beauty",
+  // "Kids",
+  // "Bags",
+
   void selectMainCategory(String? value) {
     if (value == "Men") {
       subCategoryList = men;
     } else if (value == "Women") {
       subCategoryList = women;
+    } else if (value == "Electronics") {
+      subCategoryList = electronics;
+    } else if (value == "Accessories") {
+      subCategoryList = accessories;
+    } else if (value == "Home & Garden") {
+      subCategoryList = homeandgarden;
+    } else if (value == "Beauty") {
+      subCategoryList = beauty;
+    } else if (value == "Kids") {
+      subCategoryList = kids;
+    } else if (value == "Bags") {
+      subCategoryList = bags;
+    } else if (value == "Shoes") {
+      subCategoryList = shoes;
     }
 
     setState(() {
