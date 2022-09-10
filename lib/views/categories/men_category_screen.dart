@@ -32,7 +32,7 @@ class _MenCategoryScreenState extends State<MenCategoryScreen> {
             crossAxisSpacing: 15,
             mainAxisSpacing: 70,
             children: List.generate(
-              men.length,
+              men.length - 1,
               (index) {
                 return Padding(
                   padding: const EdgeInsets.all(8.0),
@@ -43,7 +43,7 @@ class _MenCategoryScreenState extends State<MenCategoryScreen> {
                         MaterialPageRoute(
                           builder: (context) {
                             return SubCategoryScreen(
-                              subCategoryName: men[index],
+                              subCategoryName: men[index + 1],
                               mainCategory: "Men",
                             );
                           },
@@ -60,7 +60,7 @@ class _MenCategoryScreenState extends State<MenCategoryScreen> {
                           ),
                         ),
                         Text(
-                          men[index],
+                          men[index + 1],
                         ),
                       ],
                     ),

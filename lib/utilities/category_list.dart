@@ -1,4 +1,17 @@
+List<String> mainCategory = [
+  "Select main category",
+  "Men",
+  "Women",
+  "Electronics",
+  "Accessories",
+  "Shoes",
+  "Home & Garden",
+  "Beauty",
+  "Kids",
+  "Bags",
+];
 List<String> men = [
+  "Subcategory",
   "Shirt",
   "T-Shirt",
   "Jacket",
@@ -7,4 +20,17 @@ List<String> men = [
   "Jeans",
   "Short",
   "Suit",
+];
+List<String> women = [
+  "Subcategory",
+  "Dress",
+  "2pcs sets",
+  "T-Shirt",
+  "Top",
+  "Skirt",
+  "Jeans",
+  "Pants",
+  "Coat",
+  "Jacket",
+  "Other",
 ];
