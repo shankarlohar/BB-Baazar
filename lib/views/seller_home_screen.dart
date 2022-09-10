@@ -3,6 +3,7 @@ import 'package:bb_baazar/views/category_screen.dart';
 import 'package:bb_baazar/views/dashboard_screen.dart';
 import 'package:bb_baazar/views/home_screen.dart';
 import 'package:bb_baazar/views/profile_screen.dart';
+import 'package:bb_baazar/views/store_screen.dart';
 import 'package:bb_baazar/views/upload_product_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -19,9 +20,7 @@ class _SellerHomeScreenState extends State<SellerHomeScreen> {
   final List<Widget> pages = [
     HomeScreen(),
     CategoryScreen(),
-    Center(
-      child: Text("Shop Screen"),
-    ),
+    StoreScreen(),
     DashboardScreen(),
     UploadProductScreen(),
   ];
