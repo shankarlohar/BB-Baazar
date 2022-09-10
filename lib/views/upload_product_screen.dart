@@ -3,8 +3,13 @@ import 'dart:io';
 
 import 'package:bb_baazar/controllers/snack_bar_controller.dart';
 import 'package:bb_baazar/utilities/category_list.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:path/path.dart' as path;
+import 'package:uuid/uuid.dart';
 
 class UploadProductScreen extends StatefulWidget {
   @override
@@ -15,6 +20,8 @@ class _UploadProductScreenState extends State<UploadProductScreen> {
 // const UploadProductScreen({ Key? key }) : super(key: key);
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
   final ImagePicker picker = ImagePicker();
+  final FirebaseStorage firebaseStorage = FirebaseStorage.instance;
+  final FirebaseFirestore firebaseFirestore = FirebaseFirestore.instance;
   String mainCategoryValue = "Select main category";
   String subCategoryValue = "Subcategory";
 
@@ -24,8 +31,10 @@ class _UploadProductScreenState extends State<UploadProductScreen> {
   late int quantity;
   late String productName;
   late String description;
+  late String productId;
 
   List<XFile>? imageList = null;
+  List<String> imageUrlList = [];
 
   void pickProductImages() async {
     try {
@@ -55,18 +64,25 @@ class _UploadProductScreenState extends State<UploadProductScreen> {
     );
   }
 
-  void uploadProduct() {
+  Future<void> uploadImages() async {
     if (mainCategoryValue != "Select main category" &&
         subCategoryValue != "Subcategory") {
       if (formKey.currentState!.validate()) {
         formKey.currentState!.save();
         if (imageList!.isNotEmpty) {
-          print(price);
-          print(productName);
-          setState(() {
-            imageList = null;
-          });
-          formKey.currentState!.reset();
+          try {
+            for (var image in imageList!) {
+              Reference ref = await firebaseStorage
+                  .ref("products/${path.basename(image.path)}");
+              await ref.putFile(File(image.path)).whenComplete(() async {
+                await ref.getDownloadURL().then((value) {
+                  imageUrlList.add(value);
+                });
+              });
+            }
+          } catch (e) {
+            return snackBar("Something went wrong while uploading", context);
+          }
         } else {
           return snackBar("Please pick images", context);
         }
@@ -89,6 +105,38 @@ class _UploadProductScreenState extends State<UploadProductScreen> {
       mainCategoryValue = value!;
       subCategoryValue = "Subcategory";
     });
+  }
+
+  void uploadData() async {
+    if (imageUrlList.isNotEmpty) {
+      CollectionReference productRef = firebaseFirestore.collection("products");
+      productId = Uuid().v4();
+      await productRef.doc(productId).set({
+        "productId": productId,
+        "mainCategory": mainCategoryValue,
+        "subCategory": subCategoryValue,
+        "price": price,
+        "instock": quantity,
+        "productName": productName,
+        "productDescription": description,
+        "sellerUid": FirebaseAuth.instance.currentUser!.uid,
+        "productImages": imageUrlList,
+        "discount": 0,
+      }).whenComplete(() {
+        setState(() {
+          imageList = null;
+          subCategoryList = ["Subcategory"];
+          mainCategoryValue = "Select main category";
+          subCategoryValue = "Subcategory";
+          imageUrlList = [];
+        });
+        formKey.currentState!.reset();
+      });
+    }
+  }
+
+  void uploadProduct() async {
+    await uploadImages().whenComplete(() => uploadData());
   }
 
   @override
