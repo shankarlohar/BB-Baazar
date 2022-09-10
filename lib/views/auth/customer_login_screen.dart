@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
 class CustomerLoginScreen extends StatefulWidget {
+  static const String routeName = "CustomerLoginScreen";
   @override
   State<CustomerLoginScreen> createState() => _CustomerLoginScreenState();
 }
@@ -32,10 +33,8 @@ class _CustomerLoginScreenState extends State<CustomerLoginScreen> {
     if (res != "Success") {
       return snackBar(res, context);
     } else {
-      return Navigator.of(context)
-          .push(MaterialPageRoute(builder: (BuildContext context) {
-        return CustomerHomeScreen();
-      }));
+      return Navigator.of(context).pushNamedAndRemoveUntil(
+          CustomerHomeScreen.routeName, (route) => false);
     }
   }
 

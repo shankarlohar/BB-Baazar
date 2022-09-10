@@ -1,11 +1,13 @@
 import 'package:bb_baazar/controllers/auth_controller.dart';
 import 'package:bb_baazar/controllers/snack_bar_controller.dart';
 import 'package:bb_baazar/views/auth/customer_login_screen.dart';
+import 'package:bb_baazar/views/auth/landing_seller_screen.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
 class LandingCustomerScreen extends StatefulWidget {
+  static const String routeName = "LandingCustomerScreen";
   @override
   State<LandingCustomerScreen> createState() => _LandingCustomerScreenState();
 }
@@ -49,10 +51,8 @@ class _LandingCustomerScreenState extends State<LandingCustomerScreen> {
     if (res != "Success") {
       return snackBar(res, context);
     } else {
-      return Navigator.of(context)
-          .push(MaterialPageRoute(builder: (BuildContext context) {
-        return CustomerLoginScreen();
-      }));
+      return Navigator.of(context).pushNamedAndRemoveUntil(
+          CustomerLoginScreen.routeName, (route) => false);
     }
   }
 
@@ -281,7 +281,10 @@ class _LandingCustomerScreenState extends State<LandingCustomerScreen> {
                           ),
                         ),
                         TextButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            Navigator.pushNamed(
+                                context, LandingSellerScreen.routeName);
+                          },
                           child: Text(
                             "Sign Up",
                           ),

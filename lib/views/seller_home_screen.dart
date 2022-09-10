@@ -1,17 +1,19 @@
 import 'package:bb_baazar/views/cart_screen.dart';
 import 'package:bb_baazar/views/category_screen.dart';
+import 'package:bb_baazar/views/dashboard_screen.dart';
 import 'package:bb_baazar/views/home_screen.dart';
 import 'package:bb_baazar/views/profile_screen.dart';
+import 'package:bb_baazar/views/upload_product_screen.dart';
 import 'package:flutter/material.dart';
 
-class CustomerHomeScreen extends StatefulWidget {
-  static const String routeName = "CustomerHomeScreen";
+class SellerHomeScreen extends StatefulWidget {
+  static const String routeName = "SellerHomeScreen";
   @override
-  State<CustomerHomeScreen> createState() => _CustomerHomeScreenState();
+  State<SellerHomeScreen> createState() => _SellerHomeScreenState();
 }
 
-class _CustomerHomeScreenState extends State<CustomerHomeScreen> {
-  // const CustomerHomeScreen({Key? key}) : super(key: key);
+class _SellerHomeScreenState extends State<SellerHomeScreen> {
+  // const SellerHomeScreen({Key? key}) : super(key: key);
   int selectedItem = 0;
 
   final List<Widget> pages = [
@@ -20,8 +22,8 @@ class _CustomerHomeScreenState extends State<CustomerHomeScreen> {
     Center(
       child: Text("Shop Screen"),
     ),
-    CartScreen(),
-    ProfileScreen(),
+    DashboardScreen(),
+    UploadProductScreen(),
   ];
 
   @override
@@ -51,12 +53,12 @@ class _CustomerHomeScreenState extends State<CustomerHomeScreen> {
             label: "Shop",
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.shopping_cart),
-            label: "Cart",
+            icon: Icon(Icons.dashboard),
+            label: "Dashboard",
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.person),
-            label: "Profile",
+            icon: Icon(Icons.upload),
+            label: "Upload",
           ),
         ],
       ),

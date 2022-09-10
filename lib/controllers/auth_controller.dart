@@ -46,10 +46,12 @@ class AuthController {
 
         String downloadUrl = await uploadImageToStorage(image);
 
-        await firestore.collection('users').doc(cred.user!.uid).set({
+        await firestore.collection('customers').doc(cred.user!.uid).set({
+          "cid": cred.user!.uid,
           "fullName": fullName,
           "email": email,
           "image": downloadUrl,
+          "address": '',
         });
 
         res = "Success";
