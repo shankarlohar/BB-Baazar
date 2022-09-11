@@ -1,4 +1,6 @@
+import 'package:bb_baazar/controllers/snack_bar_controller.dart';
 import 'package:bb_baazar/provider/cart_provider.dart';
+import 'package:bb_baazar/views/minor_screens/place_order_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
@@ -207,7 +209,14 @@ class CartScreen extends StatelessWidget {
                 ),
               ),
               child: MaterialButton(
-                onPressed: () {},
+                onPressed: context.watch<CartProvider>().totalPrice == 0.00
+                    ? null
+                    : () {
+                        Navigator.push(context,
+                            MaterialPageRoute(builder: (context) {
+                          return PlaceOrderScreen();
+                        }));
+                      },
                 child: Text(
                   "Check Out",
                   style: TextStyle(

@@ -52,6 +52,7 @@ class AuthController {
           "email": email,
           "image": downloadUrl,
           "address": '',
+          "phone": '',
         });
 
         res = "Success";
