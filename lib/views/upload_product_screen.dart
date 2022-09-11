@@ -1,4 +1,3 @@
-import 'dart:ffi';
 import 'dart:io';
 
 import 'package:bb_baazar/controllers/snack_bar_controller.dart';
@@ -17,11 +16,13 @@ class UploadProductScreen extends StatefulWidget {
 }
 
 class _UploadProductScreenState extends State<UploadProductScreen> {
-// const UploadProductScreen({ Key? key }) : super(key: key);
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
   final ImagePicker picker = ImagePicker();
   final FirebaseStorage firebaseStorage = FirebaseStorage.instance;
   final FirebaseFirestore firebaseFirestore = FirebaseFirestore.instance;
+
+  bool isLoading = false;
+
   String mainCategoryValue = "Select main category";
   String subCategoryValue = "Subcategory";
 
@@ -153,6 +154,7 @@ class _UploadProductScreenState extends State<UploadProductScreen> {
           mainCategoryValue = "Select main category";
           subCategoryValue = "Subcategory";
           imageUrlList = [];
+          isLoading = false;
         });
         formKey.currentState!.reset();
       });
@@ -160,7 +162,15 @@ class _UploadProductScreenState extends State<UploadProductScreen> {
   }
 
   void uploadProduct() async {
-    await uploadImages().whenComplete(() => uploadData());
+    setState(() {
+      isLoading = true;
+    });
+    try {
+      await uploadImages().whenComplete(() => uploadData());
+      snackBar("Your Product Uploaded.", context);
+    } on Exception catch (e) {
+      snackBar(e.toString(), context);
+    }
   }
 
   @override
@@ -375,7 +385,11 @@ class _UploadProductScreenState extends State<UploadProductScreen> {
             onPressed: () {
               uploadProduct();
             },
-            child: Icon(Icons.upload),
+            child: isLoading
+                ? CircularProgressIndicator(
+                    color: Colors.white,
+                  )
+                : Icon(Icons.upload),
           ),
         ],
       ),
