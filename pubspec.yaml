@@ -47,6 +47,7 @@ dependencies:
   badges: ^2.0.3
   font_awesome_flutter: ^10.2.1
   provider: ^6.0.3
+  sn_progress_dialog: ^1.0.8
   
 dev_dependencies:
   flutter_test:
