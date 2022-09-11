@@ -56,7 +56,7 @@ class ProductModel extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          products['price'].toString(),
+                          ' ₹' + products['price'].toString(),
                           style: TextStyle(
                             color: Colors.red,
                           ),

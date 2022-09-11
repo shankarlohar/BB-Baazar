@@ -80,7 +80,7 @@ class ProductDetailScreen extends StatelessWidget {
                   Row(
                     children: [
                       Text(
-                        "USD",
+                        "INR ₹",
                         style: TextStyle(
                           fontSize: 18,
                           color: Colors.red,

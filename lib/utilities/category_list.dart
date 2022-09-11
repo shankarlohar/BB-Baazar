@@ -36,104 +36,104 @@ List<String> women = [
 ];
 List<String> electronics = [
   "Subcategory",
-  'phone',
-  'computer',
-  'laptop',
-  'smart tv',
-  'phone holder',
-  'charger',
-  'usb cables',
-  'head phone',
-  'smart watch',
-  'tablet',
-  'mouse',
-  'keyboard',
-  'gaming',
-  'other'
+  'Phone',
+  'Computer',
+  'Laptop',
+  'Smart TV',
+  'Phone Holder',
+  'Charger',
+  'Usb Cables',
+  'Head Phone',
+  'Smart Watch',
+  'Tablet',
+  'Mouse',
+  'Keyboard',
+  'Gaming',
+  'Other'
 ];
 
 List<String> shoes = [
   "Subcategory",
-  'men slippers',
-  'men classic',
-  'men casual',
-  'men boots',
-  'men canvas',
-  'men sport',
-  'men snadals',
-  'home slippers',
-  'women slippers',
-  'women boots',
-  'women heels',
-  'women sport',
-  'women snadals',
-  'other'
+  'Men Slippers',
+  'Men Classic',
+  'Men Casual',
+  'Men Boots',
+  'Men Canvas',
+  'Men Sport',
+  'Men Snadals',
+  'Home Slippers',
+  'Women Slippers',
+  'Women Boots',
+  'Women Heels',
+  'Women Sport',
+  'Women Snadals',
+  'Other'
 ];
 
 List<String> homeandgarden = [
   "Subcategory",
-  'living room',
-  'bed room',
-  'dinning room',
-  'kitchen tools',
-  'bath access.',
-  'furniture',
-  'decoration',
-  'lighting',
-  'garden',
-  'other'
+  'Living Room',
+  'Bed Room',
+  'Dinning Room',
+  'Kitchen Tools',
+  'Bath Access.',
+  'Furniture',
+  'Decoration',
+  'Lighting',
+  'Garden',
+  'Other'
 ];
 
 List<String> beauty = [
   "Subcategory",
-  'body care',
-  'hair care',
-  'men perfume',
-  'women perfume',
-  'make up',
-  'other'
+  'Body Care',
+  'Hair Care',
+  'Men Perfume',
+  'Women Perfume',
+  'Make Up',
+  'Other'
 ];
 
 List<String> accessories = [
   "Subcategory",
-  'hat',
-  'men sunglass',
-  'w sunglass',
-  'classic watch',
-  'gloves',
-  'belt waist',
-  'ring',
-  'necklace',
-  'scarf set',
-  'anklet',
-  'other'
+  'Hat',
+  'Men Sunglass',
+  'Women Sunglass',
+  'Classic Watch',
+  'Gloves',
+  'Belt Waist',
+  'Ring',
+  'Necklace',
+  'Scarf Set',
+  'Anklet',
+  'Other'
 ];
 
 List<String> kids = [
   "Subcategory",
-  'girls sets',
-  'girls dress',
-  'girls top',
-  'girls pants',
-  'jacket',
-  'sweatshirts',
-  'boys sets',
-  'boys top',
-  'boys pants',
-  'home wear',
-  'boys suits',
-  'baby shoes',
-  'other'
+  'Girls Sets',
+  'Girls Dress',
+  'Girls Top',
+  'Girls Pants',
+  'Jacket',
+  'Sweat Shirts',
+  'Boys Sets',
+  'Boys Top',
+  'Boys Pants',
+  'Home Wear',
+  'Boys Suits',
+  'Baby Shoes',
+  'Other'
 ];
 
 List<String> bags = [
   "Subcategory",
-  'wallet',
-  'clutch',
-  'chest bag',
-  'back pack',
-  'business bags',
-  'laptop bags',
-  'women bags',
-  'other'
+  'Wallet',
+  'Clutch',
+  'Chest Bag',
+  'Back Back',
+  'Business Bags',
+  'Laptop Bags',
+  'Women Bags',
+  'Other'
 ];

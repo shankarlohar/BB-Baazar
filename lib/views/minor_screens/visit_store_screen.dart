@@ -14,7 +14,7 @@ class VisitStoreScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final Stream<QuerySnapshot> productStream = FirebaseFirestore.instance
         .collection('products')
-        .where("SellerUid", isEqualTo: sellerUid)
+        .where("sellerUid", isEqualTo: sellerUid)
         .snapshots();
     CollectionReference seller =
         FirebaseFirestore.instance.collection('Sellers');
