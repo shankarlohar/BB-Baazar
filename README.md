@@ -2,7 +2,7 @@
 
 ## A Flutter project.
 
-#### The application is an Ecommerce builts with FLUTTER and FIREBASE. Here, multiple sellers can upload a product according to a particular category & sub category. Customers can navigate the products using category & sub category just like amazon, flipkart apps. Also, customers can add his/her choiceable products in cart as well as wishlist. After adding to cart the payment calculations are done and results are shown, it will be possible in the coming versions to order the products (added in cart) using an online stripe payment method (using Debit / Credit Card).
+#### The application is an Ecommerce built with FLUTTER and FIREBASE using MVC architecture. Here, multiple sellers can upload a product according to a particular category & sub category. Customers can navigate the products using category & sub category just like amazon, flipkart apps. Also, customers can add his/her choiceable products in cart as well as wishlist. After adding to cart the payment calculations are done and results are shown, it will be possible in the coming versions to order the products (added in cart) using an online stripe payment method (using Debit / Credit Card).
 
 ### Adding Items To Cart And Checkout
 https://user-images.githubusercontent.com/74100292/189546399-39b58d5e-2c92-4983-b90a-71a415b85e9c.mp4
