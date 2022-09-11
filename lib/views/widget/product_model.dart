@@ -1,8 +1,11 @@
 import 'package:badges/badges.dart';
 import 'package:bb_baazar/views/detail/product_detail_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:collection/collection.dart';
+import '../../provider/wishlist_provider.dart';
 
-class ProductModel extends StatelessWidget {
+class ProductModel extends StatefulWidget {
   final dynamic products;
 
   const ProductModel({
@@ -11,12 +14,17 @@ class ProductModel extends StatelessWidget {
   }) : super(key: key);
 
   @override
+  State<ProductModel> createState() => _ProductModelState();
+}
+
+class _ProductModelState extends State<ProductModel> {
+  @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
         Navigator.push(context, MaterialPageRoute(builder: (context) {
           return ProductDetailScreen(
-            productList: products,
+            productList: widget.products,
           );
         }));
       },
@@ -41,11 +49,11 @@ class ProductModel extends StatelessWidget {
                         minHeight: 100,
                         maxHeight: 250,
                       ),
-                      child: Image.network(products['productImages'][0]),
+                      child: Image.network(widget.products['productImages'][0]),
                     ),
                   ),
                   Text(
-                    products['productName'],
+                    widget.products['productName'],
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                     ),
@@ -56,17 +64,52 @@ class ProductModel extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          ' ₹' + products['price'].toString(),
+                          ' ₹' + widget.products['price'].toString(),
                           style: TextStyle(
                             color: Colors.red,
                           ),
                         ),
                         IconButton(
-                          onPressed: () {},
-                          icon: Icon(
-                            Icons.favorite_border_outlined,
-                            color: Colors.red,
-                          ),
+                          onPressed: () {
+                            Provider.of<WishlistProvider>(context,
+                                            listen: false)
+                                        .getWishItems
+                                        .firstWhereOrNull((cart) =>
+                                            cart.documentId ==
+                                            widget.products['productId']) !=
+                                    null
+                                ? context
+                                    .read<WishlistProvider>()
+                                    .removeWhishlist(
+                                        widget.products['productId'])
+                                : Provider.of<WishlistProvider>(context,
+                                        listen: false)
+                                    .addWishItem(
+                                        widget.products['productName'],
+                                        widget.products['price'],
+                                        1,
+                                        widget.products['productImages'],
+                                        widget.products['productId'],
+                                        widget.products['sellerUid'],
+                                        widget.products['instock']);
+                          },
+                          icon: context
+                                      .watch<WishlistProvider>()
+                                      .getWishItems
+                                      .firstWhereOrNull((wishlistItem) =>
+                                          wishlistItem.documentId ==
+                                          widget.products['productId']) !=
+                                  null
+                              ? Icon(
+                                  Icons.favorite,
+                                  color: Colors.red,
+                                  size: 30,
+                                )
+                              : Icon(
+                                  Icons.favorite_border_outlined,
+                                  color: Colors.red,
+                                  size: 30,
+                                ),
                         ),
                       ],
                     ),

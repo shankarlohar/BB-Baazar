@@ -1,4 +1,5 @@
 import 'package:bb_baazar/provider/cart_provider.dart';
+import 'package:bb_baazar/provider/wishlist_provider.dart';
 import 'package:bb_baazar/views/auth/customer_login_screen.dart';
 import 'package:bb_baazar/views/auth/landing_customer_screen.dart';
 import 'package:bb_baazar/views/auth/landing_seller_screen.dart';
@@ -16,6 +17,9 @@ void main() async {
   runApp(MultiProvider(providers: [
     ChangeNotifierProvider(create: (_) {
       return CartProvider();
+    }),
+    ChangeNotifierProvider(create: (_) {
+      return WishlistProvider();
     })
   ], child: const MyApp()));
 }

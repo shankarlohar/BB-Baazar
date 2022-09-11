@@ -1,3 +1,4 @@
+import 'package:bb_baazar/views/wishlist_screen.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -166,7 +167,12 @@ class ProfileScreen extends StatelessWidget {
                                 ),
                               ),
                               child: TextButton(
-                                onPressed: () {},
+                                onPressed: () {
+                                  Navigator.push(context,
+                                      MaterialPageRoute(builder: (context) {
+                                    return WishlistScreen();
+                                  }));
+                                },
                                 child: SizedBox(
                                   height: 40,
                                   width:

@@ -3,6 +3,7 @@ import 'dart:ui';
 import 'package:badges/badges.dart';
 import 'package:bb_baazar/controllers/snack_bar_controller.dart';
 import 'package:bb_baazar/provider/cart_provider.dart';
+import 'package:bb_baazar/provider/wishlist_provider.dart';
 import 'package:bb_baazar/views/cart_screen.dart';
 import 'package:bb_baazar/views/minor_screens/visit_store_screen.dart';
 import 'package:bb_baazar/views/widget/full_image_screen.dart';
@@ -104,12 +105,45 @@ class ProductDetailScreen extends StatelessWidget {
                     ],
                   ),
                   IconButton(
-                      onPressed: () {},
-                      icon: Icon(
-                        Icons.favorite_border_outlined,
-                        color: Colors.red,
-                        size: 30,
-                      ))
+                    onPressed: () {
+                      Provider.of<WishlistProvider>(context, listen: false)
+                                  .getWishItems
+                                  .firstWhereOrNull((cart) =>
+                                      cart.documentId ==
+                                      productList['productId']) !=
+                              null
+                          ? context
+                              .read<WishlistProvider>()
+                              .removeWhishlist(productList['productId'])
+                          : Provider.of<WishlistProvider>(context,
+                                  listen: false)
+                              .addWishItem(
+                                  productList['productName'],
+                                  productList['price'],
+                                  1,
+                                  productList['productImages'],
+                                  productList['productId'],
+                                  productList['sellerUid'],
+                                  productList['instock']);
+                    },
+                    icon: context
+                                .watch<WishlistProvider>()
+                                .getWishItems
+                                .firstWhereOrNull((wishlistItem) =>
+                                    wishlistItem.documentId ==
+                                    productList['productId']) !=
+                            null
+                        ? Icon(
+                            Icons.favorite,
+                            color: Colors.red,
+                            size: 30,
+                          )
+                        : Icon(
+                            Icons.favorite_border_outlined,
+                            color: Colors.red,
+                            size: 30,
+                          ),
+                  ),
                 ],
               ),
             ),
