@@ -1,13 +1,18 @@
 import 'dart:ui';
 
+import 'package:badges/badges.dart';
+import 'package:bb_baazar/controllers/snack_bar_controller.dart';
+import 'package:bb_baazar/provider/cart_provider.dart';
+import 'package:bb_baazar/views/cart_screen.dart';
 import 'package:bb_baazar/views/minor_screens/visit_store_screen.dart';
 import 'package:bb_baazar/views/widget/full_image_screen.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_swiper_null_safety/flutter_swiper_null_safety.dart';
+import 'package:provider/provider.dart';
 import 'package:staggered_grid_view_flutter/widgets/staggered_grid_view.dart';
 import 'package:staggered_grid_view_flutter/widgets/staggered_tile.dart';
-
+import 'package:collection/collection.dart';
 import '../widget/product_model.dart';
 
 class ProductDetailScreen extends StatelessWidget {
@@ -247,9 +252,27 @@ class ProductDetailScreen extends StatelessWidget {
               ),
             ),
             IconButton(
-              onPressed: () {},
-              icon: Icon(
-                Icons.shopping_cart,
+              onPressed: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context) {
+                  return CartScreen();
+                }));
+              },
+              icon: Badge(
+                showBadge: Provider.of<CartProvider>(context).getItems.isEmpty
+                    ? false
+                    : true,
+                badgeColor: Colors.red,
+                badgeContent: Text(
+                  Provider.of<CartProvider>(context).getItems.length.toString(),
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                child: Icon(
+                  Icons.shopping_cart,
+                ),
               ),
             ),
             Container(
@@ -262,7 +285,24 @@ class ProductDetailScreen extends StatelessWidget {
                 ),
               ),
               child: MaterialButton(
-                onPressed: () {},
+                onPressed: () {
+                  Provider.of<CartProvider>(context, listen: false)
+                              .getItems
+                              .firstWhereOrNull((cart) =>
+                                  cart.documentId ==
+                                  productList['productId']) !=
+                          null
+                      ? snackBar("The item is already in Cart!", context)
+                      : Provider.of<CartProvider>(context, listen: false)
+                          .addItem(
+                              productList['productName'],
+                              productList['price'],
+                              1,
+                              productList['productImages'],
+                              productList['productId'],
+                              productList['sellerUid'],
+                              productList['instock']);
+                },
                 child: Text(
                   "Add to cart",
                   style: TextStyle(

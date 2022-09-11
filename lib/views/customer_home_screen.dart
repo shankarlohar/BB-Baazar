@@ -2,6 +2,7 @@ import 'package:bb_baazar/views/cart_screen.dart';
 import 'package:bb_baazar/views/category_screen.dart';
 import 'package:bb_baazar/views/home_screen.dart';
 import 'package:bb_baazar/views/profile_screen.dart';
+import 'package:bb_baazar/views/store_screen.dart';
 import 'package:flutter/material.dart';
 
 class CustomerHomeScreen extends StatefulWidget {
@@ -17,9 +18,7 @@ class _CustomerHomeScreenState extends State<CustomerHomeScreen> {
   final List<Widget> pages = [
     HomeScreen(),
     CategoryScreen(),
-    Center(
-      child: Text("Shop Screen"),
-    ),
+    StoreScreen(),
     CartScreen(),
     ProfileScreen(),
   ];

@@ -1,3 +1,4 @@
+import 'package:bb_baazar/provider/cart_provider.dart';
 import 'package:bb_baazar/views/auth/customer_login_screen.dart';
 import 'package:bb_baazar/views/auth/landing_customer_screen.dart';
 import 'package:bb_baazar/views/auth/landing_seller_screen.dart';
@@ -7,11 +8,16 @@ import 'package:bb_baazar/views/seller_home_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:provider/provider.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp().then((value) => print("Completed"));
-  runApp(const MyApp());
+  runApp(MultiProvider(providers: [
+    ChangeNotifierProvider(create: (_) {
+      return CartProvider();
+    })
+  ], child: const MyApp()));
 }
 
 class MyApp extends StatelessWidget {
