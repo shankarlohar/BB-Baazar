@@ -48,18 +48,16 @@ class _ElectronicsGalleryScreenState extends State<ElectronicsGalleryScreen> {
           );
         }
 
-        return SingleChildScrollView(
-          child: StaggeredGridView.countBuilder(
-            shrinkWrap: true,
-            itemCount: snapshot.data!.docs.length,
-            crossAxisCount: 2,
-            itemBuilder: (BuildContext context, int index) {
-              return ProductModel(
-                products: snapshot.data!.docs[index],
-              );
-            },
-            staggeredTileBuilder: (context) => StaggeredTile.fit(1),
-          ),
+        return StaggeredGridView.countBuilder(
+          shrinkWrap: true,
+          itemCount: snapshot.data!.docs.length,
+          crossAxisCount: 2,
+          itemBuilder: (BuildContext context, int index) {
+            return ProductModel(
+              products: snapshot.data!.docs[index],
+            );
+          },
+          staggeredTileBuilder: (context) => StaggeredTile.fit(1),
         );
       },
     );

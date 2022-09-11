@@ -1,5 +1,6 @@
 import 'dart:ui';
 
+import 'package:bb_baazar/views/minor_screens/visit_store_screen.dart';
 import 'package:bb_baazar/views/widget/full_image_screen.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
@@ -236,7 +237,11 @@ class ProductDetailScreen extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             IconButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context) {
+                  return VisitStoreScreen(sellerUid: productList['sellerUid']);
+                }));
+              },
               icon: Icon(
                 Icons.store,
               ),
