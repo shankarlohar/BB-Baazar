@@ -1,3 +1,4 @@
+import 'package:bb_baazar/views/inner_screens/customer_order_screen.dart';
 import 'package:bb_baazar/views/wishlist_screen.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -136,7 +137,12 @@ class ProfileScreen extends StatelessWidget {
                                 color: Colors.red.shade100,
                               ),
                               child: TextButton(
-                                onPressed: () {},
+                                onPressed: () {
+                                  Navigator.push(context,
+                                      MaterialPageRoute(builder: (context) {
+                                    return CustomerOrderScreen();
+                                  }));
+                                },
                                 child: SizedBox(
                                   height: 40,
                                   width:
