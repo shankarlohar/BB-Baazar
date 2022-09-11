@@ -143,6 +143,9 @@ class _CustomerOrderScreenState extends State<CustomerOrderScreen> {
                           ),
                           Text(
                             "Delivery Status : ${order['deliveryStatus']}",
+                            style: TextStyle(
+                              color: Colors.red,
+                            ),
                           ),
                           Text(
                             "Estimated Delhivery Date : ${order['delhiveryDate']}",
